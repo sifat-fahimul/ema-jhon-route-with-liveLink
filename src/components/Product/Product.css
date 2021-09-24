@@ -20,3 +20,12 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.fa-star{
+    color: goldenrod;
+}
+.product-and-rating{
+    display: flex;
+}
+.rating{
+    margin-left: 200px;
+}
