@@ -9,8 +9,9 @@ import Shop from './components/Shop/Shop';
 function App() {
   return (
     <div>
-      <Header></Header>
+
       <Router>
+        <Header></Header>
         <Switch>
           <Route exact path='/'>
             <Shop></Shop>
