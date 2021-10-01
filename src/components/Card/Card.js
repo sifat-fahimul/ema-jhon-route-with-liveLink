@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Card.css';
 
 const Card = (props) => {
@@ -26,9 +25,7 @@ const Card = (props) => {
             <p>Shipping : {shipping.toFixed(2)}</p>
             <p>Tax : {tax.toFixed(2)}</p>
             <p><b>GrandTotal : {grandTotal.toFixed(2)}</b></p>
-            <Link to='/review'>
-                <button className='card-btn'>View Order</button>
-            </Link>
+            {props.children}
         </div>
     );
 };
