@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
-import { clearTheCart, removeFromDb } from '../../utilities/fakedb';
+import { removeFromDb } from '../../utilities/fakedb';
 import Card from '../Card/Card';
 import ReviewItem from '../ReviewItem/ReviewItem';
 
