@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Card from '../Card/Card';
 import Product from '../Product/Product';
@@ -7,17 +8,22 @@ import './Shop.css';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
-    const [card, setCard] = useState([]);
+    const [card, setCard] = useCart();
     const [UIsearchProducts, setUIsearchProducts] = useState([]);
-
+    const [pageCount, setPageCount] = useState([]);
+    const [page, setPage] = useState(0)
+    const size = 10;
     useEffect(() => {
-        fetch('./products.json')
+        fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
-                setProducts(data);
-                setUIsearchProducts(data)
+                setProducts(data.products);
+                setUIsearchProducts(data.products)
+                const count = data.count;
+                const pageNumber = Math.ceil(count / size);
+                setPageCount(pageNumber);
             })
-    }, []);
+    }, [page]);
     useEffect(() => {
 
         if (products.length) {
@@ -35,7 +41,7 @@ const Shop = () => {
 
             setCard(storedCard)
         }
-    }, [products])
+    }, [])
 
     const handleAddToCard = (product) => {
         const exists = card.find(pd => pd.key === product.key);
@@ -79,6 +85,13 @@ const Shop = () => {
                             handleAddToCard={handleAddToCard}
                         ></Product>)
                     }
+                    <div className="pagination">
+                        {[...Array(pageCount).keys()].map(number => <button
+                            className={number === page ? "selected" : ""}
+                            key={number}
+                            onClick={() => setPage(number)}
+                        >{number + 1}</button>)}
+                    </div>
                 </div>
                 <div className="card">
                     <Card card={card}>
