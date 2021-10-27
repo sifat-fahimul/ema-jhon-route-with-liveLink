@@ -14,7 +14,7 @@ const Shop = () => {
     const [page, setPage] = useState(0)
     const size = 10;
     useEffect(() => {
-        fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
+        fetch(`https://sheltered-badlands-78673.herokuapp.com/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products);

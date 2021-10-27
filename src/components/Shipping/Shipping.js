@@ -1,17 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import { clearTheCart, getStoredCart } from '../../utilities/fakedb';
 import './Shipping.css';
 
 const Shipping = () => {
+    const history = useHistory()
     const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         const savedCart = getStoredCart();
         data.order = savedCart;
 
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://sheltered-badlands-78673.herokuapp.com/orders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -24,6 +26,7 @@ const Shipping = () => {
                     alert('Order place Successfully');
                     clearTheCart();
                     reset()
+                    history.push('/')
                 }
             })
     };
