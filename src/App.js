@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Inventory from './components/Inventory/Inventory';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
+import Order from './components/Order/Order';
 import OrderReview from './components/OrderReview/OrderReview';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
 import PrivetRoute from './components/PrivetRoute/PrivetRoute';
@@ -33,6 +34,9 @@ function App() {
             </Route>
             <PrivetRoute path='/placeorder'>
               <PlaceOrder></PlaceOrder>
+            </PrivetRoute>
+            <PrivetRoute path='/order'>
+              <Order></Order>
             </PrivetRoute>
             <PrivetRoute path='/shipping'>
               <Shipping></Shipping>
