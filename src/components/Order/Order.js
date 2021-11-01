@@ -7,7 +7,7 @@ const Order = () => {
     const { user } = useAuth()
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user.email}`, {
+        fetch(`https://sheltered-badlands-78673.herokuapp.com/orders?email=${user.email}`, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('idToken')}`
             }
